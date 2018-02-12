@@ -1,12 +1,9 @@
 package util;
-
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
-import org.omg.CORBA.Request;
 
-import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,7 +59,7 @@ public class Jdbc {
         SAXBuilder builder = new SAXBuilder();
         //Class.getResourceAsStream("filepath") 从当前类所在包下按照相对路径找配置文件
         //Class.getResourceAsStream("/filepath")  从classpath下按照相对路径找配置文件
-        // InputStream is=this.getClass().getResourceAsStream("/config/jdbc.xml");
+        //InputStream is=this.getClass().getResourceAsStream("/config/jdbc.xml");
 
         //ServletContext.getResourceAsStream("filepath") 从项目根目录下按照相对路径找配置文件
         InputStream is=req.getServletContext().getResourceAsStream("resource/jdbc.xml");
