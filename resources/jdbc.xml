@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<doc>
-    <dataSource>
-        <url>jdbc:oracle:thin:@192.168.169.200:1521:orcl</url>
-        <username>fsgadtfj</username>
-        <password>fsgadtfj2017</password>
-    </dataSource>
-
-</doc>

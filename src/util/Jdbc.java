@@ -4,7 +4,10 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.omg.CORBA.Request;
 
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -20,9 +23,9 @@ public class Jdbc {
     public Jdbc() {
     }
 
-    public Connection getConnection(){
+    public Connection getConnection(HttpServletRequest req){
         Connection connection=null;
-        init();
+        init(req);
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             connection= DriverManager.getConnection(url,username,password);
@@ -34,8 +37,8 @@ public class Jdbc {
         return  connection;
     }
 
-    public ResultSet getResultSet(String sql){
-        Connection connection=getConnection();
+    public ResultSet getResultSet(HttpServletRequest req,String sql){
+        Connection connection=getConnection(req);
         try {
             Statement statement=connection.createStatement();
             return  statement.executeQuery(sql);
@@ -55,9 +58,14 @@ public class Jdbc {
         }
     }
 
-    private void init(){
+    private void init(HttpServletRequest req){
         SAXBuilder builder = new SAXBuilder();
-        InputStream is=this.getClass().getResourceAsStream("jdbc.xml");
+        //Class.getResourceAsStream("filepath") 从当前类所在包下按照相对路径找配置文件
+        //Class.getResourceAsStream("/filepath")  从classpath下按照相对路径找配置文件
+        // InputStream is=this.getClass().getResourceAsStream("/config/jdbc.xml");
+
+        //ServletContext.getResourceAsStream("filepath") 从项目根目录下按照相对路径找配置文件
+        InputStream is=req.getServletContext().getResourceAsStream("resource/jdbc.xml");
         try {
             Document document=builder.build(is);
             Element root=document.getRootElement();

@@ -11,7 +11,7 @@
     <title>EL TEST</title>
 </head>
 <body>
-
+<h3>${users[1].name}</h3>
 <script type="text/javascript" src="libs/jquery-2.1.1.js"></script>
 </body>
 </html>

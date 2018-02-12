@@ -4,10 +4,11 @@ import entity.User;
 import service.UserService;
 import util.Jdbc;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by likun on 2018/2/12 0012.
@@ -15,19 +16,19 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     Jdbc jdbc=new Jdbc();
     @Override
-    public void initUser(HttpSession httpSession) {
-        Map<String,User> users=new HashMap<>();
+    public void initUser(HttpServletRequest req) throws SQLException {
+        List<User> users=new ArrayList<>();
         String sql="select * from T_USER t";
-        ResultSet rs=jdbc.getResultSet(sql);
-        if(rs!=null){
-
+        ResultSet rs=jdbc.getResultSet(req,sql);
+        while(rs.next()){
+            String id=rs.getString("id");
+            String name=rs.getString("name");
+            User u=new User();
+            u.setId(id);
+            u.setName(name);
+            users.add(u);
         }
-        httpSession.setAttribute("users",users);
+        req.getSession().setAttribute("users",users);
     }
 
-    @Override
-    public User getUserById(String id) {
-
-        return null;
-    }
 }
