@@ -30,5 +30,4 @@ public class UserServiceImpl implements UserService {
         }
         req.getSession().setAttribute("users",users);
     }
-
 }
