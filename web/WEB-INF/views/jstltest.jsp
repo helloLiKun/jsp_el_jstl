@@ -19,5 +19,8 @@
 <c:if test="${users[1].name == '张三' }" var="result" scope="request">男</c:if>
 <h3>${result}+'------------------'</h3>
 <c:if test="${result}">${result}</c:if>
+<c:forEach var="u" items="${users}">
+    <h5>${u.name}</h5>
+</c:forEach>
 </body>
 </html>
