@@ -26,6 +26,5 @@ public class JspServlet extends HttpServlet {
         }
         req.getRequestDispatcher("WEB-INF/views/eltest.jsp").forward(req, resp);
     }
-
     UserService userService=new UserServiceImpl();
 }
