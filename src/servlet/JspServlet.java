@@ -24,7 +24,7 @@ public class JspServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        req.getRequestDispatcher("WEB-INF/views/eltest.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/views/jstltest.jsp").forward(req, resp);
     }
     UserService userService=new UserServiceImpl();
 }
